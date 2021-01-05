@@ -1,114 +1,97 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
 import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
+import { View, Text, Image, Button, TouchableOpacity } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+// 하단 탭에 들어갈 컴포넌트들
+import FirstStackNavigator from './components/tabs/FirstTab.js';
+import SecondStackScreen from "./components/tabs/SecondTab.js";
+import ThirdStackScreen from "./components/tabs/ThirdTab.js";
+import FourthStackScreen from "./components/tabs/fourthTab.js";
+import FifthStackScreen from "./components/tabs/FifthTab.js";
 
-const App: () => React$Node = () => {
-  return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </>
-  );
+
+// App()
+export default function App() {
+	return (
+		<>
+			<NavigationContainer>
+				<MyTabs />
+			</NavigationContainer >
+		</>
+	);
 };
 
-const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
-  },
-  engine: {
-    position: 'absolute',
-    right: 0,
-  },
-  body: {
-    backgroundColor: Colors.white,
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
-  },
-});
 
-export default App;
+
+// 하단 네비게이션
+const Tab = createBottomTabNavigator();
+
+function MyTabs() {
+	return (
+		<Tab.Navigator>
+			<Tab.Screen
+				name="First"
+				component={FirstStackNavigator}
+				options={{
+					tabBarLabel: 'First',
+					tabBarIcon: ({ color, size }) => (
+						<Image
+							style={{ width: 24, height: 24 }}
+							source={require('./images/image6.png')}
+						/>
+					),
+				}}
+			/>
+			<Tab.Screen name="Second" component={SecondStackScreen}
+				options={{
+					tabBarLabel: 'Second',
+					tabBarIcon: ({ color, size }) => (
+						<Image
+							style={{ width: 24, height: 24 }}
+							source={require('./images/image6.png')}
+						/>
+					),
+				}}
+			/>
+			<Tab.Screen name="Third" component={ThirdStackScreen}
+				options={{
+					tabBarLabel: 'Third',
+					tabBarIcon: ({ color, size }) => (
+						<Image
+							style={{ width: 24, height: 24 }}
+							source={require('./images/image6.png')}
+						/>
+					),
+				}}
+			/>
+			<Tab.Screen name="Fourth" component={FourthStackScreen}
+				options={{
+					tabBarLabel: 'Fourth',
+					tabBarIcon: ({ color, size }) => (
+						<Image
+							style={{ width: 24, height: 24 }}
+							source={require('./images/image6.png')}
+						/>
+					),
+				}}
+			/>
+			<Tab.Screen name="Fifth" component={FifthStackScreen}
+				options={{
+					tabBarLabel: 'Fifth',
+					tabBarIcon: ({ color, size }) => (
+						<Image
+							style={{ width: 24, height: 24 }}
+							source={require('./images/image6.png')}
+						/>
+					),
+				}}
+			/>
+		</Tab.Navigator>
+	);
+}
+
+const styles = {
+
+}
